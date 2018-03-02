@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: web
+  labels:
+    name: web
+spec:
+  type: LoadBalancer
+  ports:
+  - name: http
+    port: 80
+    targetPort: 80
+  selector:
+    name: iisgviper
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: iisgviper-deployment
+  labels:
+    app: iisgviper
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: iisgviper
+  template:
+    metadata:
+      labels:
+        app: iisgviper
+    spec:
+      containers:
+      - name: iisgviper
+        image: iis
+        ports:
+        - containerPort: 80
