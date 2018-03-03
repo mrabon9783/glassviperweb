@@ -11,27 +11,27 @@ spec:
     port: 80
     targetPort: 80
   selector:
-    name: iisgviper
+    name: iisviper
 ---
 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: iisgviper-deployment
+  name: iisviper-deployment
   labels:
-    app: iisgviper
+    app: iisviper
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: iisgviper
+      app: iisviper
   template:
     metadata:
       labels:
-        app: iisgviper
+        app: iisviper
     spec:
       containers:
-      - name: iisgviper
-        image: iis
+      - name: iisviper
+        image: rpmdevimages.azurecr.io/iisviperweb:v0
         ports:
         - containerPort: 80
